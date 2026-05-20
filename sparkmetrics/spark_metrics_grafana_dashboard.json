@@ -4606,8 +4606,8 @@
       {
         "current": {
           "selected": false,
-          "text": "jbdldev",
-          "value": "jbdldev"
+          "text": "devcluster",
+          "value": "devcluster"
         },
         "datasource": {
           "type": "influxdb",

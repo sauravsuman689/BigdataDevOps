@@ -313,7 +313,7 @@ Backup the database from another environment and restore it to this environment.
 #### Restore on the target ( Make sure the backup is zipped and moved to target server) - 
 
 ```
-[root@nvmbdprv035251 influxbkp]# influxd restore -portable -db graphite /root/influxbkp/graphite
+[root@server51 influxbkp]# influxd restore -portable -db graphite /root/influxbkp/graphite
 ```
 
 

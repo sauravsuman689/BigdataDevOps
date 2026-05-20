@@ -15,8 +15,6 @@ yum install influxdb-1.8.10.x86_64.rpm
 
 ## Step 2
 
-https://github.com/cerndb/spark-dashboard/blob/master/dockerfiles/influxdb.conf
-
 mv /etc/influxdb/influxdb.conf /etc/influxdb/influxdb.conf_orig
 
 vim /etc/influxdb/influxdb.conf
@@ -158,7 +156,7 @@ systemctl enable grafana-server.service
 
 ```
 
-Verify the Grafana running on the server http://<IP>:3000
+Verify the Grafana running on the server http://<<Grafana-host-IP>>:3000
 
 
 ## Step 5 
@@ -188,9 +186,9 @@ spark.metrics.appStatusSource.enabled true
 
 #### Step 2. Run your spark submit job using the above config. NOTE - Below is the sample job tested.
 
-
+```
 spark-submit **--properties-file metrics.properties** --class NameCountJob --master yarn --deploy-mode cluster --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf 'spark.dynamicAllocation.enabled=true' --conf 'spark.shuffle.service.enabled=true' --conf 'spark.yarn.max.executor.faiures=9' --conf 'spark.dynamicAllocation.maxExecutors=10' --conf 'spark.dynamicAllocation.minExecutors=1' --conf 'spark.dynamicAllocation.initialExecutors=1' --conf 'spark.dynamiAllocation.executorIdleTimeout=60' --conf 'spark.shuffle.service.port=7337' --conf spark.app.name=NameCountJob /home/scripts/spark-count-output_2/NameCountJob.jar hdfs://dev/tmpdir/metric_mon/input/sample_data5.csv hdfs://dev/tmpdir/metric_mon/output/$(date +%Y%m%d%H%M%S)
-
+```
 
 Once spark jobs is started, tables and data will be populated to graphite db which can be verified as below.
 The database graphite in influxdb will be automatically be created on the metrics is populated.
@@ -316,5 +314,5 @@ Backup the database from another environment and restore it to this environment.
 [root@server51 influxbkp]# influxd restore -portable -db graphite /root/influxbkp/graphite
 ```
 
-
+Reference - https://github.com/cerndb/spark-dashboard/blob/master
 Reference - https://stackoverflow.com/questions/27779472/export-data-from-influxdb

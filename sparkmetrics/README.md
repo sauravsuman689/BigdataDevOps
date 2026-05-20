@@ -165,8 +165,7 @@ Verify the Grafana running on the server http://<IP>:3000
 
 Import the grafana dashboard
 
-[spark_grafana_dashboard.json](/.attachments/spark_grafana_dashboard-3b5d644e-b031-4945-9129-a5ae86314df9.json)
-
+sparkmetrics/spark_metrics_grafana_dashboard.json
 
 ## Step 6 
 
